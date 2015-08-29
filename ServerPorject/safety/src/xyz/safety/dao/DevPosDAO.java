@@ -1,10 +1,10 @@
 package xyz.safety.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.bson.Document;
-import org.bson.types.ObjectId;
 
 import xyz.safety.base.BaseMongoDAO;
 import xyz.safety.base.BaseUtil;
@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mongodb.Block;
 import com.mongodb.client.FindIterable;
+import com.mongodb.client.result.DeleteResult;
 
 public class DevPosDAO extends BaseMongoDAO{
 	
@@ -51,6 +52,12 @@ public class DevPosDAO extends BaseMongoDAO{
 	        }.getType());
 		this.getDatabase().getCollection("DevPos").insertMany(devposlist);
 		return devposlist.size();
+	}
+	
+	public long deleteDevPosByDate(String dateCondition){
+		DeleteResult result = this.getDatabase().getCollection("DevPos")
+		.deleteMany(new Document("dtm", new Document("$gte", dateCondition).append("$lt", BaseUtil.getFormatDate(new Date()))));
+		return result.getDeletedCount();
 	}
 	
 }

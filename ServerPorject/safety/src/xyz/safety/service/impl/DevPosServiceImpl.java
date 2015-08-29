@@ -6,12 +6,12 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.bson.Document;
 
+import xyz.safety.base.BaseUtil;
 import xyz.safety.base.SqlMapClientUtil;
 import xyz.safety.dao.DevPosDAO;
 import xyz.safety.service.IDevPosService;
 import xyz.safety.vo.DevPos;
 
-import com.mongodb.client.FindIterable;
 
 public class DevPosServiceImpl implements IDevPosService{
 	
@@ -150,6 +150,24 @@ public class DevPosServiceImpl implements IDevPosService{
 		// TODO Auto-generated method stub
 		DevPosDAO devPosDao = new DevPosDAO();
 		return (int) devPosDao.getTotalDevPos(devpos);
+	}
+
+	
+	@Override
+	public long deleteByDate(String condition) {
+		// TODO Auto-generated method stub
+		logger.info("deleteByDate Mongo start...");
+		long returnVal = 0;
+		int[] cons = new int[5];
+		if(condition!=null){
+			for(int i=0;i<condition.length();i++){
+				cons[i] = new Integer(String.valueOf(condition.charAt(i)));
+			}
+		}
+		DevPosDAO devPosDao = new DevPosDAO();
+		returnVal = devPosDao.deleteDevPosByDate(BaseUtil.getBeforeDate(cons));
+		logger.info("deleteByDate Mongo end...");
+		return returnVal;
 	}
 
 }

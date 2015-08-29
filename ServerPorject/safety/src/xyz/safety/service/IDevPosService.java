@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.bson.Document;
 
-import com.mongodb.client.FindIterable;
 
 import xyz.safety.vo.DevPos;
 
@@ -25,4 +24,6 @@ public interface IDevPosService {
 	public List<Document> getDevPosListMongo(DevPos devpos);
 	
 	public int getTotalCntOfDevPosMongo(DevPos devpos);
+	
+	public long deleteByDate(String condition);
 }
