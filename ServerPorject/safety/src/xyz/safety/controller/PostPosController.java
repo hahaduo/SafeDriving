@@ -50,12 +50,12 @@ public class PostPosController extends HttpServlet {
 			Gson gson = new Gson();
 			IDevPosService devPosService = new DevPosServiceImpl();
 			if(devJSON.startsWith("[")){
-				List<DevPos> devposlist = gson.fromJson(devJSON, new TypeToken<List<DevPos>>() {  
-		        }.getType());
-				recode = devPosService.batchSaveDevPos(devposlist);
+//				List<DevPos> devposlist = gson.fromJson(devJSON, new TypeToken<List<DevPos>>() {  
+//		        }.getType());
+				recode = devPosService.batchSaveDevPos(devJSON);
 			}else{
-				DevPos devpos= gson.fromJson(devJSON, DevPos.class);
-				recode = devPosService.saveDevPos(devpos);
+				//DevPos devpos= gson.fromJson(devJSON, DevPos.class);
+				recode = devPosService.saveDevPos(devJSON);
 			}
 		}
 		response.setContentType("text/plain;charset=UTF-8");

@@ -4,10 +4,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.bson.Document;
 
 import xyz.safety.base.SqlMapClientUtil;
+import xyz.safety.dao.DevPosDAO;
 import xyz.safety.service.IDevPosService;
 import xyz.safety.vo.DevPos;
+
+import com.mongodb.client.FindIterable;
 
 public class DevPosServiceImpl implements IDevPosService{
 	
@@ -95,6 +99,57 @@ public class DevPosServiceImpl implements IDevPosService{
 		logger.info("getTotalCntOfDevPos end...");
 		
 		return totalCnt.intValue();
+	}
+
+	@Override
+	public int saveDevPos(String json) {
+		// TODO Auto-generated method stub
+		logger.info("saveDevPos Mongo start...");
+		int returnVal = 0;
+		DevPosDAO devPosDao = new DevPosDAO();
+		try{
+			devPosDao.insertDevPos(json);
+			returnVal = 1;
+		}catch(Exception e){
+			logger.info("Exception on saveDevPos Mongo!");
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		logger.info("saveDevPos Mongo end...");
+		return returnVal;
+	}
+
+	@Override
+	public int batchSaveDevPos(String json) {
+		// TODO Auto-generated method stub
+		logger.info("batchSaveDevPos Mongo start...");
+		int returnVal = 0;
+		DevPosDAO devPosDao = new DevPosDAO();
+		try{
+			returnVal = devPosDao.batchInsertDevPos(json);
+		}catch(Exception e){
+			logger.info("Exception on batchSaveDevPos Mongo!");
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		logger.info("batchSaveDevPos Mongo end...");
+		return returnVal;
+		
+	}
+
+	@Override
+	public List<Document> getDevPosListMongo(DevPos devpos) {
+		// TODO Auto-generated method stub
+		DevPosDAO devPosDao = new DevPosDAO();
+		
+		return devPosDao.getDevPos(devpos);
+	}
+
+	@Override
+	public int getTotalCntOfDevPosMongo(DevPos devpos) {
+		// TODO Auto-generated method stub
+		DevPosDAO devPosDao = new DevPosDAO();
+		return (int) devPosDao.getTotalDevPos(devpos);
 	}
 
 }

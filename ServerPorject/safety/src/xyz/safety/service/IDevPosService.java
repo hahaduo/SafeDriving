@@ -2,6 +2,10 @@ package xyz.safety.service;
 
 import java.util.List;
 
+import org.bson.Document;
+
+import com.mongodb.client.FindIterable;
+
 import xyz.safety.vo.DevPos;
 
 public interface IDevPosService {
@@ -13,4 +17,12 @@ public interface IDevPosService {
 	public List<DevPos> getDevPosList(DevPos devpos);
 	
 	public int getTotalCntOfDevPos(DevPos devpos);
+	
+	public int saveDevPos(String json);
+	
+	public int batchSaveDevPos(String json);
+	
+	public List<Document> getDevPosListMongo(DevPos devpos);
+	
+	public int getTotalCntOfDevPosMongo(DevPos devpos);
 }

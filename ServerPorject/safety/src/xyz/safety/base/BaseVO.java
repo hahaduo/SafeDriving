@@ -1,6 +1,9 @@
 package xyz.safety.base;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import org.bson.types.ObjectId;
 
 public class BaseVO implements Serializable{
 
@@ -14,6 +17,16 @@ public class BaseVO implements Serializable{
 	private int currentPageNum = 1;
 	
 	private int totalCount;
+	
+	private String objectId;
+
+	public String getObjectId() {
+		return objectId;
+	}
+
+	public void setObjectId(String objectId) {
+		this.objectId = objectId;
+	}
 
 	public int getTotalCount() {
 		return totalCount;
@@ -42,6 +55,15 @@ public class BaseVO implements Serializable{
 	public int getStartNum(){
 		int startNum = (this.currentPageNum-1)*this.perPageNum;
 		return startNum;
+	}
+	
+	public String getIdDate(){
+		String returnValue = null;
+		if(this.getObjectId()!=null){
+			Date date = new ObjectId(this.getObjectId()).getDate();
+			returnValue = BaseUtil.getFormatDate(date);
+		}
+		return returnValue;
 	}
 
 }

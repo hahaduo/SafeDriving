@@ -82,7 +82,14 @@
 		 		<td><c:out value="${devpos.loc }" /></td>
 		 		<td><c:out value="${devpos.addr }" /></td>
 		 		<td><c:out value="${devpos.dtm }" /></td>
-		 		<td><c:out value="${devpos.regDate }" /></td>
+		 		<c:choose>
+			 		<c:when test="${devpos.regDate ne null}">
+			 			<td><c:out value="${devpos.idDate }" /></td>
+			 		</c:when>
+			 		<c:otherwise>
+			 			<td><c:out value="${devpos.idDate }" /></td>
+			 		</c:otherwise>
+		 		</c:choose>
 		 	</tr>
 		 	</c:forEach>
 		 </table>

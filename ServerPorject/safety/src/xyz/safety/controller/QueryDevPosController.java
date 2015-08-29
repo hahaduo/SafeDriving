@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.bson.Document;
+
+import com.mongodb.client.FindIterable;
+
 import xyz.safety.service.IDevPosService;
 import xyz.safety.service.impl.DevPosServiceImpl;
 import xyz.safety.vo.DevPos;
@@ -49,10 +53,11 @@ public class QueryDevPosController extends HttpServlet {
 		
 		IDevPosService devPosService = new DevPosServiceImpl();
 		DevPos devpos = new DevPos();
-		int totalCnt = devPosService.getTotalCntOfDevPos(devpos);
+		int totalCnt = devPosService.getTotalCntOfDevPosMongo(devpos);
 		
 		devpos.setCurrentPageNum(currentPageNum);
-		List<DevPos> list = devPosService.getDevPosList(devpos);
+//		List<DevPos> list = devPosService.getDevPosList(devpos);
+		List<Document> list = devPosService.getDevPosListMongo(devpos);
 	
 		request.setAttribute("totalCnt", totalCnt);
 		request.setAttribute("currentPage", currentPage);
