@@ -170,19 +170,21 @@ $(document).ready(function(){
     });
     
     $(".btn-group").delegate("button","click",function(){
-	    	var cdsnStr = $(this).attr("data-cdsn");
-	    	$.ajax({url:"removePos",
-				type:"post",
-				data:{cdsn:cdsnStr},
-				dataType:"text",
-				success:function(result){
-					alert("Remove Success,Remove count is "+result+"!");
-					window.location.href = "queryPos";
-				},
-				error:function(result){
-					alert("There are some exceptions on the server.");
-				}
-			});
+    		if(confirm("Deleting Records.Are you sure?")){
+    			var cdsnStr = $(this).attr("data-cdsn");
+	    	    	$.ajax({url:"removePos",
+	    				type:"post",
+	    				data:{cdsn:cdsnStr},
+	    				dataType:"text",
+	    				success:function(result){
+	    					alert("Remove Success,Remove count is "+result+"!");
+	    					window.location.href = "queryPos";
+	    				},
+	    				error:function(result){
+	    					alert("There are some exceptions on the server.");
+	    				}
+	    			});
+    		}
     });
     
 });
