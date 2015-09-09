@@ -53,6 +53,10 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 		</iterate>
 	</insert>
 	
+	<delete id="deletePos" >
+		delete from `DEV_POS`
+	</delete>
+	
 	<!-- <update id="updateUser" parameterClass="user"> 
 		<![CDATA[
 		UPDATE t_user SET name=#name#, sex=#sex#  WHERE id = #id# 

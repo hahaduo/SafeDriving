@@ -23,6 +23,23 @@ public class DevPosDAO extends BaseMongoDAO{
 		return  this.getDatabase().getCollection("DevPos").count();
 	}
 	
+	public List<Document> getAllDevPos(){
+		final List<Document> list = new ArrayList<Document>();
+		FindIterable<Document> items = null;
+		items = this.getDatabase().getCollection("DevPos")
+				.find()
+				.sort(new Document("_id",-1));
+			
+		
+		items.forEach(new Block<Document>() {
+		    @Override
+		    public void apply(final Document document) {
+		    		list.add(document.append("idDate", BaseUtil.getFormatDate(document.getObjectId("_id").getDate())));
+		    }
+		});
+		return  list;
+	}
+	
 	public List<Document> getDevPos(DevPos devpos){
 		final List<Document> list = new ArrayList<Document>();
 		FindIterable<Document> items = null;

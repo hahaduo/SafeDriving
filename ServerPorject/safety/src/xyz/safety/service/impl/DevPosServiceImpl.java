@@ -1,10 +1,13 @@
 package xyz.safety.service.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.bson.Document;
+
+import com.google.gson.Gson;
 
 import xyz.safety.base.BaseUtil;
 import xyz.safety.base.SqlMapClientUtil;
@@ -24,6 +27,22 @@ public class DevPosServiceImpl implements IDevPosService{
 	private static final String SELECT_TOTAL_CNT = "devPosDAO.getTotalDevPos";
 	
 	private static final String SELECT_DEV_POS_LIST = "devPosDAO.getDevPos";
+	
+	private static final String DELETE_POS = "devPosDAO.deletePos";
+	
+	public void deleteAllPos(){
+		logger.info("deleteAllPos start...");
+		try {
+			SqlMapClientUtil.getSqlMapClient().delete(DELETE_POS);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			logger.error("deleteAllPos Error.");
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		logger.info("deleteAllPos end...");
+	}
 
 	@Override
 	public int saveDevPos(DevPos devpos) {
@@ -168,6 +187,26 @@ public class DevPosServiceImpl implements IDevPosService{
 		returnVal = devPosDao.deleteDevPosByDate(BaseUtil.getBeforeDate(cons));
 		logger.info("deleteByDate Mongo end...");
 		return returnVal;
+	}
+
+	@Override
+	public int sycData2MySQL() {
+		// TODO Auto-generated method stub
+		int returnValue = 0;
+		DevPosDAO devPosDao = new DevPosDAO();
+		List<Document> list = devPosDao.getAllDevPos();
+		Gson gson = new Gson();
+		DevPos devpos = null;
+		List<DevPos> listPos = new ArrayList<DevPos>();
+		for(Document doc : list){
+			devpos = gson.fromJson(doc.toJson(), DevPos.class);
+			listPos.add(devpos);
+		}
+		if(listPos.size()>0){
+			deleteAllPos();
+			returnValue = batchSaveDevPos(listPos);
+		}
+		return returnValue;
 	}
 
 }

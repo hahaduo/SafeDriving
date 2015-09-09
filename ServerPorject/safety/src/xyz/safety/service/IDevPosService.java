@@ -26,4 +26,6 @@ public interface IDevPosService {
 	public int getTotalCntOfDevPosMongo(DevPos devpos);
 	
 	public long deleteByDate(String condition);
+	
+	public int sycData2MySQL();
 }
