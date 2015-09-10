@@ -3,6 +3,7 @@ package xyz.safety.dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.bson.Document;
 
@@ -20,7 +21,16 @@ public class DevPosDAO extends BaseMongoDAO{
 	
 	
 	public long getTotalDevPos(DevPos devpos){
-		return  this.getDatabase().getCollection("DevPos").count();
+		Document condition = null;
+		long totalCnt = 0;
+		if(devpos.getDevId()!=null){
+			Pattern pattern = Pattern.compile("^.*" + devpos.getDevId() + ".*$", Pattern.MULTILINE);
+			condition = new Document("devId",new Document("$regex",pattern));
+			totalCnt = this.getDatabase().getCollection("DevPos").count(condition);
+		}else{
+			totalCnt = this.getDatabase().getCollection("DevPos").count();
+		}
+		return totalCnt;
 	}
 	
 	public List<Document> getAllDevPos(){
@@ -43,9 +53,20 @@ public class DevPosDAO extends BaseMongoDAO{
 	public List<Document> getDevPos(DevPos devpos){
 		final List<Document> list = new ArrayList<Document>();
 		FindIterable<Document> items = null;
-		items = this.getDatabase().getCollection("DevPos")
-				.find()
-				.sort(new Document("_id",-1)).skip(devpos.getStartNum()).limit(15);
+		Document condition = null;
+		if(devpos.getDevId()!=null){
+			Pattern pattern = Pattern.compile("^.*" + devpos.getDevId() + ".*$", Pattern.MULTILINE);
+			condition = new Document("devId",new Document("$regex",pattern));
+			items = this.getDatabase().getCollection("DevPos")
+					.find(condition)
+					.sort(new Document("_id",-1)).skip(devpos.getStartNum()).limit(15);
+		}else{
+			items = this.getDatabase().getCollection("DevPos")
+					.find()
+					.sort(new Document("_id",-1)).skip(devpos.getStartNum()).limit(15);
+		}
+		
+		
 			
 		
 		items.forEach(new Block<Document>() {

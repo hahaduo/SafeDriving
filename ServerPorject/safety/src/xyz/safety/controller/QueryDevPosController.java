@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.bson.Document;
 
-import com.mongodb.client.FindIterable;
-
+import xyz.safety.base.BaseUtil;
 import xyz.safety.service.IDevPosService;
 import xyz.safety.service.impl.DevPosServiceImpl;
 import xyz.safety.vo.DevPos;
@@ -45,22 +44,30 @@ public class QueryDevPosController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String currentPage = request.getParameter("currentPage");
-		if(currentPage==null){
+		String currentPage = BaseUtil.fixNull(request.getParameter("currentPage"));
+		if("".equals(currentPage)){
 			currentPage = "1";
 		}
 		int currentPageNum = Integer.parseInt(currentPage);
+		String devId = BaseUtil.fixNull(request.getParameter("devId"));
+		
 		
 		IDevPosService devPosService = new DevPosServiceImpl();
 		DevPos devpos = new DevPos();
+		devpos.setCurrentPageNum(currentPageNum);
+		
+		if(!"".equals(devId)){
+			devpos.setDevId(devId);
+		}
 		int totalCnt = devPosService.getTotalCntOfDevPosMongo(devpos);
 		
-		devpos.setCurrentPageNum(currentPageNum);
+		
 //		List<DevPos> list = devPosService.getDevPosList(devpos);
 		List<Document> list = devPosService.getDevPosListMongo(devpos);
 	
 		request.setAttribute("totalCnt", totalCnt);
 		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("devId", devId);
 		request.setAttribute("devPosList", list);
 		request.getRequestDispatcher("devPosList.jsp").forward(request, response);
 	}
