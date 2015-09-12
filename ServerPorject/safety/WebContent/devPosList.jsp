@@ -34,8 +34,15 @@
 				<dd><code><fmt:message key="devPosList.memo" bundle="${labelBundle}"/></code></dd>
 				
 			</dl>
-				
+			<div class="btn-group" role="group" aria-label="...">
+				  <button type="button" class="btn btn-success" data-cdsn="10000"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Minute</button>
+				  <button type="button" class="btn btn-info" data-cdsn="01000"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Hour</button>
+				  <button type="button" class="btn btn-primary" data-cdsn="00100"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Day</button>
+				  <button type="button" class="btn btn-warning" data-cdsn="00010"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Month</button>
+				  <button type="button" class="btn btn-danger" data-cdsn="00001"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Year</button>
+			</div>	
 		</div>
+		
 		
 	</div>
 	
@@ -46,7 +53,7 @@
 	
 	<c:if test="${totalCnt gt 0}">
 	<div class="row">
-		<div class="col-xs-8 col-md-8 text-left">
+		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-left">
 			<form class="form-inline" action="queryPos" method="post">
 			  <div class="form-group">
 			    <label class="sr-only" for="devId">Device ID</label>
@@ -54,14 +61,14 @@
 			      <div class="input-group-addon">Input</div>
 			      <input type="text" class="form-control" id="devId" name="devId" placeholder="Device ID" value="<c:out value="${devId }" />">
 			      <input type="hidden" name="currentPage" value="1">
-			      <div class="input-group-addon"><button type="submit" >Query</button></div>
+			      <div id="queryBtn" class="input-group-addon btn">Query</div>
 			    </div>
 			  </div>
 			  
 			</form>
 		</div>
 		
-		<div class="col-xs-4 col-md-4 text-right">
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-right">
 			<h4>Total:<c:out value="${totalCnt }" />	
 			(<c:out value="${(currentPage-1)*15+1 }" />~
 			<c:choose>
@@ -158,17 +165,7 @@
 			</nav>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-10 col-md-10">
-				<div class="btn-group" role="group" aria-label="...">
-				  <button type="button" class="btn btn-success" data-cdsn="10000"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Minute</button>
-				  <button type="button" class="btn btn-info" data-cdsn="01000"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Hour</button>
-				  <button type="button" class="btn btn-primary" data-cdsn="00100"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Day</button>
-				  <button type="button" class="btn btn-warning" data-cdsn="00010"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Month</button>
-				  <button type="button" class="btn btn-danger" data-cdsn="00001"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Year</button>
-				</div>
-		</div>
-	</div>
+	
 </div>
 
 
@@ -223,6 +220,11 @@ $(document).ready(function(){
 	    				}
 	    			});
     		}
+    });
+    
+    $("#queryBtn").click(function(){
+    		var form = $("form")[0];
+    		form.submit();
     });
     
 });

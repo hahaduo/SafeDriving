@@ -1,0 +1,2 @@
+use safety
+db.DevPos.createIndex( { devId: 1}, {background: true} )
