@@ -113,7 +113,7 @@
 			 		<td>Device ID</td>
 			 		<td>Longitude</td>
 			 		<td>Latitude</td>
-			 		<td>Speed</td>
+			 		<td>Speed(km/h)</td>
 			 		<td>Bearing</td>
 			 		<td>Country Name</td>
 			 		<td>Location</td>
@@ -126,7 +126,7 @@
 			 		<td><c:out value="${devpos.devId }" /></td>
 			 		<td><c:out value="${devpos.lon }" /></td>
 			 		<td><c:out value="${devpos.lat }" /></td>
-			 		<td><c:out value="${devpos.spd }" /></td>
+			 		<td><c:out value="${devpos.spd*3.6 }" /></td>
 			 		<td><c:out value="${devpos.bear }" /></td>
 			 		<td><c:out value="${devpos.cn }" /></td>
 			 		<td><c:out value="${devpos.loc }" /></td>

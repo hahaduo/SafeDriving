@@ -1,0 +1,1 @@
+db.DevPos.find().forEach(function(item){db.DevPos.update({"_id":item._id},{"$set":{"lon":item.lat,"lat":item.lon}},false,true)})
