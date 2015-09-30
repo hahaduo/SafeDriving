@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="safety">
+    <output-path>$PROJECT_DIR$/src/webapp</output-path>
+    <root id="root">
+      <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.3.0" />
+      <element id="module-output" name="SafeDriving" />
+      <element id="javaee-facet-resources" facet="SafeDriving/web/Web" />
+    </root>
+  </artifact>
+</component>
