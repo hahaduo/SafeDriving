@@ -9,7 +9,7 @@
 ##用户的登录和注册
 
 #framework
-framework的搭建基于一下工程结构
+framework的搭建基于以下工程结构
 https://github.com/abel533/Mybatis-Spring
 
 
