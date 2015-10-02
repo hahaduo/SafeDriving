@@ -8,6 +8,10 @@
 
 ##用户的登录和注册
 
+#framework
+framework的搭建基于一下工程结构
+https://github.com/abel533/Mybatis-Spring
+
 
 ##作者信息
 
