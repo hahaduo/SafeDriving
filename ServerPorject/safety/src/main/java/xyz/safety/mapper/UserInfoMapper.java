@@ -24,8 +24,9 @@
 
 package xyz.safety.mapper;
 
-import com.isea533.mybatis.model.UserInfo;
-import com.isea533.mybatis.util.MyMapper;
+
+import xyz.safety.util.MyMapper;
+import xyz.safety.vo.UserInfo;
 
 public interface UserInfoMapper extends MyMapper<UserInfo> {
 }

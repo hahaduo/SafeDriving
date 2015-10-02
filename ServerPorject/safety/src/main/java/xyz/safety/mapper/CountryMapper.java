@@ -24,8 +24,9 @@
 
 package xyz.safety.mapper;
 
-import com.isea533.mybatis.model.Country;
-import com.isea533.mybatis.util.MyMapper;
+
+import xyz.safety.util.MyMapper;
+import xyz.safety.vo.Country;
 
 public interface CountryMapper extends MyMapper<Country> {
 }

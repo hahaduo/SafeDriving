@@ -1,6 +1,7 @@
 package xyz.safety.service;
 
-import com.isea533.mybatis.model.Country;
+
+import xyz.safety.vo.Country;
 
 import java.util.List;
 

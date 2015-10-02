@@ -1,11 +1,11 @@
 package xyz.safety.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.isea533.mybatis.model.Country;
-import com.isea533.mybatis.service.CountryService;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.StringUtil;
+import xyz.safety.service.CountryService;
+import xyz.safety.vo.Country;
 
 import java.util.List;
 

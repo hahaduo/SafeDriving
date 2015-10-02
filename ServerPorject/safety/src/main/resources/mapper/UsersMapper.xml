@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.safety.mapper.UsersMapper">
+  <resultMap id="BaseResultMap" type="xyz.safety.vo.Users">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="SEQ" jdbcType="BIGINT" property="seq" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="REG_DATE" jdbcType="TIMESTAMP" property="regDate" />
+  </resultMap>
+</mapper>

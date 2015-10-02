@@ -1,14 +1,14 @@
 package xyz.safety.controller.demo;
 
 import com.github.pagehelper.PageInfo;
-import com.isea533.mybatis.model.Country;
-import com.isea533.mybatis.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import xyz.safety.service.CountryService;
+import xyz.safety.vo.Country;
 
 import java.util.List;
 

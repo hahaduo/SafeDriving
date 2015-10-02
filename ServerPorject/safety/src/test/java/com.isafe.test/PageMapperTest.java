@@ -22,48 +22,42 @@
  * THE SOFTWARE.
  */
 
-package xyz.safety.service.impl;
+package com.isafe.test;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.common.Mapper;
-import xyz.safety.service.IService;
+import tk.mybatis.mapper.entity.Example;
+import xyz.safety.mapper.CountryMapper;
+import xyz.safety.vo.Country;
 
 import java.util.List;
 
 /**
- * Created by liuzh on 2014/12/11.
+ * Created by liuzh on 2015/3/7.
  */
-@Service
-public abstract class BaseService<T> implements IService<T> {
+public class PageMapperTest extends BasicTest {
+
+//    @Autowired
+//    private CountryMapper countryMapper;
 
     @Autowired
-    protected Mapper<T> mapper;
+    private SqlSession sqlSession;
 
-    @Override
-    public T selectByKey(Object key) {
-        return mapper.selectByPrimaryKey(key);
+    @Test
+    public void test(){
+        CountryMapper countryMapper = sqlSession.getMapper(CountryMapper.class);
+        Example example = new Example(Country.class);
+        example.createCriteria().andGreaterThan("id",100);
+        PageHelper.startPage(2,10);
+        List<Country> countries = countryMapper.selectByExample(example);
+        PageInfo<Country> pageInfo = new PageInfo<Country>(countries);
+        System.out.println(pageInfo.getTotal());
+
+        countries = countryMapper.selectByExample(example);
+        pageInfo = new PageInfo<Country>(countries);
+        System.out.println(pageInfo.getTotal());
     }
-
-    public int save(T entity) {
-        return mapper.insert(entity);
-    }
-
-    public int delete(Object key) {
-        return mapper.deleteByPrimaryKey(key);
-    }
-
-    public int updateAll(T entity) {
-        return mapper.updateByPrimaryKey(entity);
-    }
-
-    public int updateNotNull(T entity) {
-        return mapper.updateByPrimaryKeySelective(entity);
-    }
-
-    public List<T> selectByExample(Object example) {
-        return mapper.selectByExample(example);
-    }
-
-    //TODO 其他...
 }

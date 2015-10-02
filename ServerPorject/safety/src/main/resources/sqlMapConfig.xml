@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings
+		cacheModelsEnabled="true"
+		enhancementEnabled="false"
+		lazyLoadingEnabled="true"
+		errorTracingEnabled="true"
+		maxRequests="512"
+		maxSessions="128"
+		maxTransactions="32"
+		useStatementNamespaces="true" 
+	/>
+	<!-- 使用JDBC的事务管理 -->
+	<transactionManager type="JDBC">
+		
+		<dataSource type = "SIMPLE">
+			<property name = "JDBC.Driver" value="com.mysql.jdbc.Driver" />
+			<property name = "JDBC.ConnectionURL" value="jdbc:mysql://127.0.0.1:3306/safety?characterEncoding=utf8" />
+			<property name = "JDBC.Username" value="safety" />
+			<property name = "JDBC.Password" value="safety" />
+		</dataSource>
+		
+		<!-- 数据源 
+		<dataSource type = "JNDI">
+			<property name="DataSource" value="java:comp/env/safetyDS"/>
+		</dataSource>
+		-->
+	</transactionManager>
+	<!-- 这里可以写多个实体的映射文件 -->
+	<sqlMap resource = "xyz/safety/dao/DEV_POS.xml" />
+</sqlMapConfig>
