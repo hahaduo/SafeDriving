@@ -1,20 +1,1 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: lihongjun
-  Date: 15/9/28
-  Time: 下午7:05
-  To change this template use File | Settings | File Templates.
---%>
-<%@include file="../../../common/Head.jsp" %>
-
-<html>
-<head>
-    <title></title>
-  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-     email: ${user.email}
-</body>
-</html>
+<%--  Created by IntelliJ IDEA.  User: lihongjun  Date: 15/9/28  Time: 下午7:05  To change this template use File | Settings | File Templates.--%><%@ page contentType="text/html; charset=UTF-8" language="java" %><%@include file="../../../common/Head.jsp" %><html><head>    <meta charset="utf-8">    <meta http-equiv="X-UA-Compatible" content="IE=edge">    <title>登录成功页面</title>  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>  <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>    <style type="text/css">        #wrap {            margin: 200px auto;            width: 400px;            height: 200px;            border: solid 1px red;        }    </style></head><body><div id="wrap">    欢迎加入SafeDriving！    请登录以下邮箱进行确认：    <br>    ${user.email}</div></body></html>
