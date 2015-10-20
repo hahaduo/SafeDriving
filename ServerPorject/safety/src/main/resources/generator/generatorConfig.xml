@@ -55,7 +55,7 @@
       <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
     <!--</table>-->
     <table tableName="users" >
-      <generatedKey column="seq" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="_id" sqlStatement="Mysql" identity="true"/>
     </table>
   </context>
 </generatorConfiguration>

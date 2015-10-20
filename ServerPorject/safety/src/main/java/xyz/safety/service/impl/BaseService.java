@@ -65,5 +65,7 @@ public abstract class BaseService<T> implements IService<T> {
         return mapper.selectByExample(example);
     }
 
+
+
     //TODO 其他...
 }

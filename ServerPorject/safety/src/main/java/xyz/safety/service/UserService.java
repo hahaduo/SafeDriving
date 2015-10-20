@@ -7,4 +7,10 @@ import xyz.safety.vo.Users;
  */
 public interface UserService {
     void saveUser(Users user);
+
+    Users findUserByMail(String email);
+
+    void updateUserMailStatus(String email);
+
+    void updateUserMailStatus(Users dbUser);
 }

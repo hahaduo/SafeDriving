@@ -5,31 +5,37 @@ import javax.persistence.*;
 
 public class Users {
     @Id
-    @Column(name = "SEQ")
+    @Column(name = "_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long seq;
+    private Long id;
 
     @Column(name = "EMAIL")
     private String email;
 
+    @Column(name = "NICK_NAME")
+    private String nickName;
+
     @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "MAIL_CONFIRM_YN")
+    private String mailConfirmYn;
 
     @Column(name = "REG_DATE")
     private Date regDate;
 
     /**
-     * @return SEQ
+     * @return _ID
      */
-    public Long getSeq() {
-        return seq;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * @param seq
+     * @param id
      */
-    public void setSeq(Long seq) {
-        this.seq = seq;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -47,6 +53,20 @@ public class Users {
     }
 
     /**
+     * @return NICK_NAME
+     */
+    public String getNickName() {
+        return nickName;
+    }
+
+    /**
+     * @param nickName
+     */
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    /**
      * @return PASSWORD
      */
     public String getPassword() {
@@ -58,6 +78,20 @@ public class Users {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return MAIL_CONFIRM_YN
+     */
+    public String getMailConfirmYn() {
+        return mailConfirmYn;
+    }
+
+    /**
+     * @param mailConfirmYn
+     */
+    public void setMailConfirmYn(String mailConfirmYn) {
+        this.mailConfirmYn = mailConfirmYn;
     }
 
     /**

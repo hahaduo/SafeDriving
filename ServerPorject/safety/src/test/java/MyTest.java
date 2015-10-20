@@ -1,10 +1,11 @@
-package test;
-
 import java.math.BigDecimal;
 
 import org.bson.Document;
 
 import xyz.safety.base.MongoClientUtil;
+import xyz.safety.util.AESUtil;
+import xyz.safety.util.DesUtil;
+import xyz.safety.util.RSAUtil;
 import xyz.safety.vo.DevPos;
 
 import com.google.gson.Gson;
@@ -12,8 +13,10 @@ import com.mongodb.Block;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.junit.Test;
 
-public class Test {
+
+public class MyTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -71,5 +74,37 @@ public class Test {
 		
 		
 	}
+
+    @Test
+	public void test1() {
+        try {
+            String key = "123456789";
+            String s = DesUtil.encrypt("bigbower@163.com",key);
+            String ss = DesUtil.decrypt(s,key);
+            System.out.println(s);
+            System.out.println(ss);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void test2() {
+        String pubKey = "SafeDriving1111111";
+        String encS = RSAUtil.doubKeyEncoding("bigbower@163.com", pubKey,"DES");
+        String decS = RSAUtil.doubKeyDencoding(encS, pubKey, "DES");
+        System.out.println(encS);
+        System.out.println(decS);
+    }
+
+    @Test
+    public void test3() {
+        String src = "bigbower@163.com";
+        String key = "SafeDriving";
+        String encS = AESUtil.GetAESCode(src, key);
+        String decS = AESUtil.RevertAESCode(encS, key);
+        System.out.println(encS);
+        System.out.println(decS);
+    }
 
 }

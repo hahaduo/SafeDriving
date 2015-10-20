@@ -4,3 +4,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <fmt:setBundle basename="messages/label" var="labelBundle" />
 <fmt:setBundle basename="messages/message" var="messageBundle" />
+<c:set value="http://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="serverPath" scope="page"/>

@@ -5,9 +5,12 @@
     <!--
       WARNING - @mbggenerated
     -->
-    <id column="SEQ" jdbcType="BIGINT" property="seq" />
+    <id column="_ID" jdbcType="BIGINT" property="id" />
     <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
     <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="MAIL_CONFIRM_YN" jdbcType="VARCHAR" property="mailConfirmYn" />
     <result column="REG_DATE" jdbcType="TIMESTAMP" property="regDate" />
   </resultMap>
+
 </mapper>
