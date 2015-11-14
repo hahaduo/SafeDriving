@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap
-PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
-"http://www.ibatis.com/dtd/sql-map-2.dtd">
+		PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+		"http://www.ibatis.com/dtd/sql-map-2.dtd">
 <sqlMap namespace="devPosDAO">
 
-	<typeAlias alias="devPos" type="xyz.safety.vo.DevPos"/> 
+	<typeAlias alias="devPos" type="xyz.safety.vo.DevPos"/>
 
-	<resultMap id="devPosMap" class="devPos">  
-        <result property="devId" column="DEV_ID"/>  
-        <result property="lon" column="LON"/>  
-        <result property="lat" column="LAT"/>  
-        <result property="spd" column="SPD"/> 
-        <result property="dtm" column="DTM"/>
-        <result property="cn" column="CN"/>
-        <result property="loc" column="LOC"/>
-        <result property="addr" column="ADDR"/>
-        <result property="bear" column="BEAR"/>
-        <result property="regDate" column="REG_DATE"/>
-    </resultMap>
-    
-    <select id="getTotalDevPos"  resultClass="java.lang.Integer">
+	<resultMap id="devPosMap" class="devPos">
+		<result property="devId" column="DEV_ID"/>
+		<result property="lon" column="LON"/>
+		<result property="lat" column="LAT"/>
+		<result property="spd" column="SPD"/>
+		<result property="dtm" column="DTM"/>
+		<result property="cn" column="CN"/>
+		<result property="loc" column="LOC"/>
+		<result property="addr" column="ADDR"/>
+		<result property="bear" column="BEAR"/>
+		<result property="regDate" column="REG_DATE"/>
+		<result property="goId" column="GO_ID"/>
+	</resultMap>
+
+	<select id="getTotalDevPos"  resultClass="java.lang.Integer">
 		<![CDATA[
 			select count(*) totalCount
 			from `DEV_POS` d	
@@ -28,35 +29,35 @@ PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 
 	<select id="getDevPos" parameterClass="devPos" resultMap="devPosMap">
 		<![CDATA[
-			select d.`DEV_ID`,d.`SEQ`,d.`LON`,d.`LAT`,d.`SPD`,d.`DTM`,d.`CN`,d.`LOC`,d.`ADDR`,d.`BEAR`,d.`REG_DATE`
+			select d.`DEV_ID`,d.`SEQ`,d.`LON`,d.`LAT`,d.`SPD`,d.`DTM`,d.`CN`,d.`LOC`,d.`ADDR`,d.`BEAR`,d.`REG_DATE`,d.`GO_ID`
 			from `DEV_POS` d
 			order by d.`REG_DATE` DESC
 			limit #startNum#,#perPageNum#
 		]]>
 	</select>
-	
+
 	<insert id="insertDevPos" parameterClass="devPos">
 		<![CDATA[
-			insert into `DEV_POS` (`DEV_ID`, `LON`, `LAT`, `SPD`, `DTM`, `CN`, `LOC`, `ADDR`, `BEAR`) 
-			values(#devId#,#lon#,#lat#,#spd#,#dtm#,#cn#,#loc#,#addr#,#bear#)
+			insert into `DEV_POS` (`DEV_ID`, `LON`, `LAT`, `SPD`, `DTM`, `CN`, `LOC`, `ADDR`, `BEAR`,`GO_ID`) 
+			values(#devId#,#lon#,#lat#,#spd#,#dtm#,#cn#,#loc#,#addr#,#bear#,#goId#)
 		]]>
 	</insert>
-	
+
 	<insert id="batchInsertDevPos" parameterClass="java.util.List">
 		<![CDATA[
-			insert into `DEV_POS` (`DEV_ID`, `LON`, `LAT`, `SPD`, `DTM`, `CN`, `LOC`, `ADDR`, `BEAR`) values
+			insert into `DEV_POS` (`DEV_ID`, `LON`, `LAT`, `SPD`, `DTM`, `CN`, `LOC`, `ADDR`, `BEAR`,`GO_ID`) values
 		]]>
 		<iterate conjunction=",">
 			<![CDATA[
-				(#devPos[].devId#,#devPos[].lon#,#devPos[].lat#,#devPos[].spd#,#dtm[].dtm#,#cn[].cn#,#loc[].loc#,#addr[].addr#,#bear[].bear#)
+				(#devPos[].devId#,#devPos[].lon#,#devPos[].lat#,#devPos[].spd#,#dtm[].dtm#,#cn[].cn#,#loc[].loc#,#addr[].addr#,#bear[].bear#,#goId[].goId#)
 			]]>
 		</iterate>
 	</insert>
-	
+
 	<delete id="deletePos" >
 		delete from `DEV_POS`
 	</delete>
-	
+
 	<!-- <update id="updateUser" parameterClass="user"> 
 		<![CDATA[
 		UPDATE t_user SET name=#name#, sex=#sex#  WHERE id = #id# 

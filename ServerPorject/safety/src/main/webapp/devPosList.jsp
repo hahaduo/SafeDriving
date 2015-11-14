@@ -111,6 +111,7 @@
 			 <table class="table table-striped">
 			 	<tr>
 			 		<td>Device ID</td>
+					<td>Go ID</td>
 			 		<td>Longitude</td>
 			 		<td>Latitude</td>
 			 		<td>Speed(km/h)</td>
@@ -124,6 +125,7 @@
 			 	<c:forEach var="devpos" items="${devPosList}">
 			 	<tr class="warning">
 			 		<td><c:out value="${devpos.devId }" /></td>
+					<td><c:out value="${devpos.goId }" /></td>
 			 		<td><c:out value="${devpos.lon }" /></td>
 			 		<td><c:out value="${devpos.lat }" /></td>
 			 		<td><c:out value="${devpos.spd*3.6 }" /></td>
@@ -146,7 +148,6 @@
 			 </c:if>
 		</div>
 	</div>
-	你好
 	<div class="row">
 		<div class="col-xs-12 col-md-12">	
 			<nav>

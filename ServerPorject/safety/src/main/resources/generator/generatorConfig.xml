@@ -54,7 +54,7 @@
     <!--<table tableName="%" >-->
       <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
     <!--</table>-->
-    <table tableName="users" >
+    <table tableName="USERS" >
       <generatedKey column="_id" sqlStatement="Mysql" identity="true"/>
     </table>
   </context>

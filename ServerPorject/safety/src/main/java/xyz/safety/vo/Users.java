@@ -1,8 +1,11 @@
 package xyz.safety.vo;
 
+import org.apache.ibatis.type.Alias;
+
 import java.util.Date;
 import javax.persistence.*;
 
+@Alias("Users")
 public class Users {
     @Id
     @Column(name = "_ID")

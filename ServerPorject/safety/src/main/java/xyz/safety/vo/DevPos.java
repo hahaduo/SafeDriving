@@ -5,29 +5,39 @@ import java.math.BigDecimal;
 import xyz.safety.base.BaseVO;
 
 public class DevPos  extends BaseVO{
-		
+
 
 	private static final long serialVersionUID = 6504746629075909523L;
 
 	private String devId;
-	
+
 	private String cn;
-	
+
 	private String addr;
-	
+
 	private String loc;
-	
+
 	private BigDecimal lon;
-	
+
 	private BigDecimal lat;
-	
+
 	private BigDecimal spd;
-	
+
 	private BigDecimal bear;
-	
+
 	private String dtm;
-	
+
 	private String regDate;
+
+	private String goId;
+
+	public String getGoId() {
+		return goId;
+	}
+
+	public void setGoId(String goId) {
+		this.goId = goId;
+	}
 
 	public String getDevId() {
 		return devId;
@@ -108,7 +118,7 @@ public class DevPos  extends BaseVO{
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	
-	
+
+
 
 }

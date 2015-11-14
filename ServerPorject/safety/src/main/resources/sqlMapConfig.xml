@@ -17,9 +17,12 @@
 		
 		<dataSource type = "SIMPLE">
 			<property name = "JDBC.Driver" value="com.mysql.jdbc.Driver" />
-			<property name = "JDBC.ConnectionURL" value="jdbc:mysql://127.0.0.1:3306/safety?characterEncoding=utf8" />
-			<property name = "JDBC.Username" value="safety" />
-			<property name = "JDBC.Password" value="safety" />
+			<!--<property name = "JDBC.ConnectionURL" value="jdbc:mysql://127.0.0.1:3306/safety?characterEncoding=utf8" />-->
+			<property name = "JDBC.ConnectionURL" value="jdbc:mysql://mysql:3306/safety?characterEncoding=utf8" />
+			<!--<property name = "JDBC.Username" value="safety" />-->
+			<property name = "JDBC.Username" value="root" />
+			<!--<property name = "JDBC.Password" value="safety" />-->
+			<property name = "JDBC.Password" value="mysql1" />
 		</dataSource>
 		
 		<!-- 数据源 
